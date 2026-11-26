@@ -1,0 +1,9 @@
+$kind: http-request
+name: http://localhost:8080/api/location/owner/abc
+description: ""
+url: http://localhost:8080/api/location/owner/abc
+method: POST
+body:
+  type: json
+  content: '{ "name": "Center", "address":'
+order: 6000

@@ -1,0 +1,17 @@
+$kind: http-request
+name: http://localhost:8080/api/user/999
+description: ""
+url: http://localhost:8080/api/user/999
+method: PUT
+body:
+  type: json
+  content: |-
+    {
+        "firstName": "Ivan",
+        "lastName": "Ivanov",
+        "email": "mariap@test.com",
+        "password": "secret123",
+        "role": "OWNER"
+
+    }
+order: 4000

@@ -1,0 +1,6 @@
+$kind: http-request
+name: http://localhost:8080/api/location/1
+description: ""
+url: http://localhost:8080/api/location/owner/99
+method: GET
+order: 7000

@@ -1,0 +1,9 @@
+$kind: http-request
+name: http://localhost:8080/api/user
+description: ""
+url: http://localhost:8080/api/user
+method: POST
+body:
+  type: json
+  content: ""
+order: 5000
