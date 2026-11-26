@@ -14,6 +14,7 @@ public class StorageLocationMapper {
         location.setAddress(request.address());
         location.setCapacity(request.capacity());
         location.setOwner(owner);
+        location.setBasePrice(request.basePrice());
 
         return location;
     }
@@ -24,7 +25,8 @@ public class StorageLocationMapper {
                 location.getName(),
                 location.getAddress(),
                 location.getCapacity(),
-                location.getOwner().getId()
+                location.getOwner().getId(),
+                location.getBasePrice()
         );
     }
 
@@ -32,5 +34,6 @@ public class StorageLocationMapper {
         location.setName(request.name());
         location.setAddress(request.address());
         location.setCapacity(request.capacity());
+        location.setBasePrice(request.basePrice());
     }
 }

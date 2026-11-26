@@ -7,6 +7,7 @@ import com.example.luggar.location.StorageLocationRepository;
 import com.example.luggar.location.dto.StorageLocationResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class GetStorageLocationsService implements Query<Void, List<StorageLocat
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ResponseEntity<List<StorageLocationResponse>> execute(Void input){
         List<StorageLocation> storageLocations = storageLocationRepository.findAll();
 

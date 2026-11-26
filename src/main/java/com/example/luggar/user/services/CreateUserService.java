@@ -11,6 +11,7 @@ import com.example.luggar.user.dto.UserResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CreateUserService implements Command<UserRequest, UserResponse> {
@@ -24,6 +25,7 @@ public class CreateUserService implements Command<UserRequest, UserResponse> {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<UserResponse> execute(UserRequest request){
         if (userRepository.existsByEmail(request.email())){
             throw new DuplicateResourceException("Email " + request.email() + " is already used.");

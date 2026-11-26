@@ -10,6 +10,7 @@ import com.example.luggar.user.dto.UserRequest;
 import com.example.luggar.user.dto.UserResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UpdateUserService implements Command<UpdateUserCommand, UserResponse> {
@@ -23,6 +24,7 @@ public class UpdateUserService implements Command<UpdateUserCommand, UserRespons
     }
 
     @Override
+    @Transactional
     public ResponseEntity<UserResponse> execute(UpdateUserCommand command) {
         Long id = command.id();
         UserRequest request = command.request();

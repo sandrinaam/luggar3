@@ -16,7 +16,7 @@ public class StorageLocationController {
 
     private final DeleteStorageLocationService deleteStorageLocationService;
 
-    private final GetOwnerStorageLocationService getOwnerStorageLocationService;
+    private final GetOwnerLocationService getOwnerLocationService;
 
     private final GetStorageLocationByIdService getStorageLocationByIdService;
 
@@ -26,13 +26,13 @@ public class StorageLocationController {
 
     public StorageLocationController(CreateStorageLocationService createStorageLocationService,
                                      DeleteStorageLocationService deleteStorageLocationService,
-                                     GetOwnerStorageLocationService getOwnerStorageLocationService,
+                                     GetOwnerLocationService getOwnerLocationService,
                                      GetStorageLocationByIdService getStorageLocationByIdService,
                                      GetStorageLocationsService getStorageLocationsService,
                                      UpdateStorageLocationService updateStorageLocationService) {
         this.createStorageLocationService = createStorageLocationService;
         this.deleteStorageLocationService = deleteStorageLocationService;
-        this.getOwnerStorageLocationService = getOwnerStorageLocationService;
+        this.getOwnerLocationService = getOwnerLocationService;
         this.getStorageLocationByIdService = getStorageLocationByIdService;
         this.getStorageLocationsService = getStorageLocationsService;
         this.updateStorageLocationService = updateStorageLocationService;
@@ -55,7 +55,7 @@ public class StorageLocationController {
 
     @GetMapping("/location/owner/{id}")
     public ResponseEntity<List<StorageLocationResponse>> getOwnerLocations(@PathVariable @Valid Long id){
-        return getOwnerStorageLocationService.execute(id);
+        return getOwnerLocationService.execute(id);
     }
 
     @PutMapping("/location/owner/{ownerId}/{id}")

@@ -6,6 +6,7 @@ import com.example.luggar.common.Query;
 import com.example.luggar.user.dto.UserResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class GetUserByIdService implements Query<Long, UserResponse> {
@@ -21,6 +22,7 @@ public class GetUserByIdService implements Query<Long, UserResponse> {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ResponseEntity<UserResponse> execute (Long id){
 
         UserResponse response = userMapper.toResponse(userRepository.findUserOrThrow(id));

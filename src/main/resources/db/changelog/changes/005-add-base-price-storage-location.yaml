@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: 005-add-base-price-storage-location
+      author: sandrina
+      changes:
+        - addColumn:
+            tableName: storage_location
+            columns:
+              - column:
+                  name: base_price
+                  type: DECIMAL(10,2)
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false

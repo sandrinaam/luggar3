@@ -1,6 +1,7 @@
 package com.example.luggar.location.services;
 
 import com.example.luggar.common.Command;
+import com.example.luggar.common.exception.ForbiddenException;
 import com.example.luggar.location.StorageLocation;
 import com.example.luggar.location.StorageLocationMapper;
 import com.example.luggar.location.StorageLocationRepository;
@@ -8,6 +9,7 @@ import com.example.luggar.location.dto.CreateStorageLocationCommand;
 import com.example.luggar.location.dto.StorageLocationResponse;
 import com.example.luggar.user.User;
 import com.example.luggar.user.UserRepository;
+import com.example.luggar.user.enums.Role;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -31,9 +33,13 @@ public class CreateStorageLocationService implements Command<CreateStorageLocati
     @Override
     @Transactional
     public ResponseEntity<StorageLocationResponse> execute(CreateStorageLocationCommand command){
-        User owner = userRepository.findUserOrThrow(command.ownerId());
+        User user = userRepository.findUserOrThrow(command.ownerId());
 
-        StorageLocation location = storageLocationMapper.toEntity(command.request(), owner);
+        if(user.getRole() == Role.CLIENT){
+            throw new ForbiddenException("Clients can't create locations.");
+        }
+
+        StorageLocation location = storageLocationMapper.toEntity(command.request(), user);
         StorageLocation saved = storageLocationRepository.save(location);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(storageLocationMapper.toResponse(saved));

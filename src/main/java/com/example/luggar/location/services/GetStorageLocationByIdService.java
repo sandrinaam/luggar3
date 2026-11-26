@@ -6,6 +6,7 @@ import com.example.luggar.location.StorageLocationRepository;
 import com.example.luggar.location.dto.StorageLocationResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class GetStorageLocationByIdService implements Query<Long, StorageLocationResponse> {
@@ -19,6 +20,7 @@ public class GetStorageLocationByIdService implements Query<Long, StorageLocatio
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ResponseEntity<StorageLocationResponse> execute(Long id){
 
         StorageLocationResponse response = storageLocationMapper.toResponse(storageLocationRepository.findStorageLocationByIdOrThrow(id));

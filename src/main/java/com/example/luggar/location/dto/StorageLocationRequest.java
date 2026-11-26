@@ -1,9 +1,8 @@
 package com.example.luggar.location.dto;
 
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
+
+import java.math.BigDecimal;
 
 public record StorageLocationRequest(
 
@@ -17,5 +16,9 @@ public record StorageLocationRequest(
 
         @NotNull(message = "Capacity is required.")
         @Min(value = 1, message = "Capacity must be at least 1.")
-        Integer capacity
+        Integer capacity,
+
+        @NotNull(message = "Base price is required.")
+        @Positive
+        BigDecimal basePrice
 ) {}
